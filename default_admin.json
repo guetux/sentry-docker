@@ -1,0 +1,20 @@
+[
+{
+  "pk": 1,
+  "model": "auth.user",
+  "fields": {
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2013-09-10T21:14:41.576Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$10000$BGn8vIRHgii4$EJ6v/7Ld2cMEpFM9Wm6neVePTYLngP7qOZ8gUdVkXxk=",
+    "email": "sentry@local.host",
+    "date_joined": "2013-09-10T21:14:41.576Z"
+  }
+}
+]
