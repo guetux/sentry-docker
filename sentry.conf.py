@@ -9,29 +9,23 @@ CONF_ROOT = os.path.dirname(__file__)
 
 ALLOWED_HOSTS = ['localhost',]
 
-DATABASES = {
-    'default': {
-        # You can swap out the engine for MySQL easily by changing this value
-        # to ``django.db.backends.mysql`` or to PostgreSQL with
-        # ``django.db.backends.postgresql_psycopg2``
-
-        # If you change this, you'll also need to install the appropriate python
-        # package: psycopg2 (Postgres) or mysql-python
-        'ENGINE': 'django.db.backends.sqlite3',
-
-        'NAME': os.path.join(CONF_ROOT, 'sentry.db'),
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-
-        # If you're using Postgres, we recommend turning on autocommit
-        # 'OPTIONS': {
-        #     'autocommit': True,
-        # }
+if 'DB_HOST' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql_psycopg2'),
+            'NAME': os.getenv('DB_NAME', 'sentry'),
+            'USER': os.getenv('DB_USER', 'sentry'),
+            'PASSWORD': os.getenv('DB_PW'),
+            'HOST': os.getenv('DB_HOST'),
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'sentry.db',
+        }
+    }
 
 # If you're expecting any kind of real traffic on Sentry, we highly recommend
 # configuring the CACHES and Redis settings

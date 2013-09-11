@@ -1,10 +1,10 @@
 FROM ubuntu:12.10
 MAINTAINER Stefan Reinhard "sr@feinheit.ch"
 RUN apt-get -qq update
-RUN apt-get install -y python-dev python-pip
+RUN apt-get install -y python-dev python-pip postgresql-server-dev-9.1
 RUN pip install virtualenv distribute
 RUN virtualenv --no-site-packages /opt/sentry/venv
-RUN pip install sentry
+RUN /opt/sentry/venv/bin/pip install sentry psycopg2
 ADD sentry.conf.py /.sentry/
 ADD default_admin.json /opt/sentry/
 RUN /opt/sentry/venv/bin/sentry upgrade --noinput
